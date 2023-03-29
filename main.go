@@ -3,11 +3,17 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 
 	v8 "rogchap.com/v8go"
 )
 
 func main() {
+
+	finalApprover, _ := ioutil.ReadFile("./mock/finalApprover.js")
+
+	fmt.Printf("final approver: %+v", string(finalApprover))
+
 	ctx := v8.NewContext() // creates a new V8 context with a new Isolate aka VM
 	ctx.RunScript(`const checkUser = (req) => {
 		req.userId = 'xxxx'
